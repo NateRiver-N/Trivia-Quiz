@@ -56,8 +56,7 @@ More categories coming soon.
 ### Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/trivia-arena.git
-```
+https://github.com/NateRiver-N/Trivia-Quiz.git
 
 ### Frontend
 
@@ -73,10 +72,11 @@ npm run dev
 
 ```bash
 cd backend
+requirements.txt not built yet backend is just started
 
 pip install -r requirements.txt
 
-uvicorn main:app --reload
+uvicorn server:app --reload
 ```
 
 ---
