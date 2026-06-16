@@ -23,7 +23,7 @@ export const Match = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           <div
-            onClick={() => navigate("/quiz/football")}
+            onClick={() => navigate("/quiz/Football")}
             className="bg-slate-900 p-8 rounded-3xl cursor-pointer hover:bg-yellow-400 hover:text-black transition duration-300"
           >
             <h2 className="text-3xl font-bold">

@@ -1,17 +1,44 @@
 from fastapi import APIRouter
-from schemas import User
+from config.db import users_collection
+
+
 
 router = APIRouter()
 
-users=[]
+@router.post("/create")
+def create_user(user: dict):
 
-@router.post("/")
-def create_user(user:User):
-    users.append(user)
+    existing = users_collection.find_one(
+        {"clerkId": user["clerkId"]}
+    )
+
+    if existing:
+        return {
+            "message": "User Exists"
+        }
+
+    users_collection.insert_one(user)
+
     return {
-        "msg":"User Created"
+        "message": "User Created"
     }
 
-@router.get("/")
-def get_users():
-    return users
+
+@router.post("/submit")
+def submit_quiz(data: dict):
+    pass
+    users_collection.update_one(
+    {
+        "clerkId": data["clerkId"]
+    },
+    {
+        "$inc": {
+            "xp": data["score"],
+            "gamesPlayed": 1
+        }
+    }
+)
+    return {
+    "message": "Quiz Submitted",
+    "score": data["score"]
+}

@@ -1,17 +1,28 @@
 from fastapi import APIRouter
-from schemas import Question
+from config.schemas import Question
+from config.db import questions_collection
 
 router = APIRouter()
 
-questions = []
+@router.get("/{category}")
+def get_questions(category: str):
 
-@router.get("/")
-def get_questions():
+    questions = list(
+        questions_collection.aggregate([
+        {
+            "$match": {
+                "category": category
+            }
+        },
+        {
+            "$sample": {
+                "size": 5
+            }
+        }
+    ])
+)
+
+    for q in questions:
+        q["_id"] = str(q["_id"])
+
     return questions
-
-@router.post("/")
-def create_question(question:Question):
-    questions.append(question)
-    return {
-        "message":"Q Added"
-    }
