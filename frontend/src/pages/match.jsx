@@ -4,6 +4,19 @@ import { useNavigate } from "react-router-dom";
 export const Match = () => {
   const navigate = useNavigate();
 
+  const startQuiz = (category) => {
+
+  localStorage.removeItem("quiz_answers");
+  localStorage.removeItem("quiz_current");
+  localStorage.removeItem("quiz_timer");
+  localStorage.removeItem("quiz_finished");
+  localStorage.removeItem("quiz_questions");
+  localStorage.removeItem("quiz_score");
+  localStorage.removeItem("quiz_review");
+
+  navigate(`/quiz/${category}`);
+};
+
   return (
     <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-4">
       <div className="w-full max-w-4xl">
@@ -23,7 +36,7 @@ export const Match = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           <div
-            onClick={() => navigate("/quiz/Football")}
+            onClick={() => startQuiz("Football")}
             className="bg-slate-900 p-8 rounded-3xl cursor-pointer hover:bg-yellow-400 hover:text-black transition duration-300"
           >
             <h2 className="text-3xl font-bold">
@@ -37,7 +50,7 @@ export const Match = () => {
           </div>
 
           <div
-            onClick={() => navigate("/quiz/gk")}
+            onClick={() => startQuiz("gk")}
             className="bg-slate-900 p-8 rounded-3xl cursor-pointer hover:bg-yellow-400 hover:text-black transition duration-300"
           >
             <h2 className="text-3xl font-bold">

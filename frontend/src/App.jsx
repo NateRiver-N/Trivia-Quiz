@@ -7,7 +7,7 @@ import { Profile } from './pages/profile';
 import { Match } from './pages/match';
 import { Quiz } from './pages/quiz';
 import { Landing } from './pages/landing';
-import { Review } from "./pages/Review";
+import { Review } from "./pages/review";
 
 const App = () => {
 
@@ -56,6 +56,7 @@ const App = () => {
       <Route path="/profile" element={<Profile />} />
       <Route path="/match" element={<Match />} />
       <Route path="/quiz/:category" element={<Quiz/>} />
+      <Route path="/review" element={<Review />}/>
     </Routes>
     </SignedIn>
     </>

@@ -36,7 +36,11 @@ const [questions, setQuestions] = useState(() => {
 
 });
 
-  const [score,setScore] = useState(0);
+const [score, setScore] = useState(() => {
+  return Number(
+    localStorage.getItem("quiz_score")
+  ) || 0;
+});
 
 const [quizFinished, setQuizFinished] =
 useState(
@@ -200,6 +204,17 @@ const handleSubmit = async () => {
  });
 
  setScore(totalScore);
+
+localStorage.setItem(
+  "quiz_review",
+  JSON.stringify({
+    questions,
+    answers,
+    category,
+    score: totalScore
+  })
+);
+
 setQuizFinished(true);
 
 await fetch(
@@ -268,6 +283,7 @@ if (quizFinished) {
             localStorage.removeItem(
   "quiz_questions"
 );
+localStorage.removeItem("quiz_score");
 
             navigate("/");
           }}
