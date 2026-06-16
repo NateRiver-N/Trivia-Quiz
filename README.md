@@ -76,6 +76,10 @@ requirements.txt not built yet backend is just started
 
 pip install -r requirements.txt
 
+if using any virtual environment
+venv\Scripts\activate
+
+
 uvicorn server:app --reload
 ```
 
